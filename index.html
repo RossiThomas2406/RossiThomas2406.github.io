@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Hernán Rossi | Portfolio</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <style>
+        /* Paleta Minimalista y Neutra */
+        [data-theme="light"] {
+            --bg-color: #fafafa;
+            --container-bg: #ffffff;
+            --text-color: #171717;
+            --text-muted: #666666;
+            --accent-color: #2563eb; /* Azul corporativo sobrio */
+            --border-color: #e5e5e5;
+            --tag-bg: #f5f5f5;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0b0f19; /* Grafito oscuro profundo */
+            --container-bg: #111827; /* Gris oscuro neutro */
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-color: #60a5fa; /* Azul pastel suave */
+            --border-color: #1f2937;
+            --tag-bg: #1f2937;
+        }
+
+        /* Estilos Base Estilo Minimalista */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 700px; /* Un poco más angosto para mejorar la lectura */
+            margin: 0 auto;
+        }
+
+        /* Controles superiores flotantes y limpios */
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        button {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        button:hover {
+            color: var(--text-color);
+            border-color: var(--text-muted);
+        }
+
+        /* Secciones sin fondo pesado, separadas por líneas sutiles */
+        section {
+            padding: 24px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* Hero sección */
+        .hero {
+            text-align: left; /* Alineación a la izquierda para un look más moderno */
+            padding-top: 0;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 4px;
+        }
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+        .subtitle-geo {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        /* Tecnologías */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .skill-tag {
+            background-color: var(--tag-bg);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+        }
+        /* Destacado sutil para tu stack principal */
+        .main-tech {
+            border-color: var(--accent-color);
+            background-color: transparent;
+        }
+
+        /* Tarjetas de Proyectos Minimalistas */
+        .project-card {
+            margin-bottom: 30px;
+        }
+        .project-card:last-child {
+            margin-bottom: 0;
+        }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .project-client {
+            font-size: 0.8rem;
+            background-color: var(--tag-bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .project-techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .project-tech-tag {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-right: 10px;
+        }
+
+        /* Contacto */
+        .contact-links {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .contact-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Control de Idioma por CSS */
+        html[lang="es"] .en {
+            display: none !important;
+        }
+        html[lang="en"] .es {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="controls">
+            <button id="lang-toggle"><i class="fa-solid fa-language"></i> EN / ES</button>
+            <button id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i> Theme</button>
+        </div>
+
+        <section class="hero">
+            <h1>THOMAS HERNÁN ROSSI</h1>
+            <p class="es">Desarrollador Backend Java</p>
+            <p class="en">Java Backend Developer</p>
+            <div class="subtitle-geo"><i class="fa-solid fa-location-dot"></i> Muñiz, Buenos Aires, Argentina</div>
+        </section>
+
+        <section id="about">
+            <h2 class="es">Sobre Mí</h2>
+            <h2 class="en">About Me</h2>
+            
+            <p class="es">Desarrollador de Software especializado en el ecosistema Java. Mi stack principal se centra en Java, Spring Boot y PostgreSQL, con un fuerte enfoque en el desarrollo de soluciones backend escalables, diseño de bases de datos relacionales y optimización de consultas.</p>
+            <p class="en">Software Developer specializing in the Java ecosystem. My core stack is built around Java, Spring Boot, and PostgreSQL, with a strong focus on developing scalable backend solutions, designing relational databases, and writing efficient queries.</p>
+            
+            <p class="es">Adicionalmente, complemento mi perfil con herramientas como Express.js, Node.js y experiencia frontend utilizando React.js y Angular.js. Cuento con un nivel de inglés fluido (B2), preparado para colaborar con equipos multiculturales.</p>
+            <p class="en">Additionally, I complement my profile with tools like Express.js, Node.js, and frontend experience using React.js and Angular.js. Fluent in English (B2 level), ready to collaborate with cross-functional and multicultural teams.</p>
+        </section>
+
+        <section id="technologies">
+            <h2 class="es">Tecnologías</h2>
+            <h2 class="en">Technologies</h2>
+            
+            <div class="skills-grid">
+                <span class="skill-tag main-tech"><i class="devicon-java-plain"></i> Java</span>
+                <span class="skill-tag main-tech"><i class="devicon-spring-plain"></i> Spring Boot</span>
+                <span class="skill-tag main-tech"><i class="devicon-spring-plain"></i> Spring Data</span>
+                <span class="skill-tag main-tech"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+                
+                <span class="skill-tag"><i class="devicon-express-original"></i> Express.js</span>
+                <span class="skill-tag"><i class="devicon-nodejs-plain"></i> Node.js</span>
+                <span class="skill-tag"><i class="fa-solid fa-cloud"></i> REST APIs</span>
+                <span class="skill-tag"><i class="fa-solid fa-box-open"></i> Maven</span>
+                <span class="skill-tag"><i class="devicon-python-plain"></i> Python</span>
+                <span class="skill-tag"><i class="devicon-react-original"></i> React.js</span>
+                <span class="skill-tag"><i class="devicon-angularjs-plain"></i> Angular.js</span>
+                <span class="skill-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
+                <span class="skill-tag"><i class="devicon-html5-plain"></i> HTML5 / CSS3</span>
+                <span class="skill-tag"><i class="devicon-git-plain"></i> Git</span>
+                <span class="skill-tag"><i class="devicon-jira-plain"></i> Scrum</span>
+            </div>
+        </section>
+
+<section id="projects">
+            <h2 class="es">Proyectos</h2>
+            <h2 class="en">Projects</h2>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title es">Sistema de Gestión de Producción Alimentaria</span>
+                    <span class="project-title en">Food Production Management System</span>
+                    <span class="project-client">UNGS</span>
+                </div>
+                <p class="es">Colaboré en un equipo ágil para diseñar y entregar un sistema full-stack que migró el flujo de trabajo de producción de una PyME de alimentos congelados hacia una solución automatizada. Desarrollé servicios backend escalables en Python, base de datos relacional en PostgreSQL y paneles en React.js.</p>
+                <p class="en">Collaborated in an Agile team to design and deliver a full-stack system that migrated a frozen food SME's production workflow to an automated software solution. Developed scalable backend services using Python, relational schema in PostgreSQL, and React.js dashboards.</p>
+                
+                <div class="project-techs">
+                    <span class="project-tech-tag"><i class="devicon-python-plain"></i> Python</span>
+                    <span class="project-tech-tag"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+                    <span class="project-tech-tag"><i class="devicon-react-original"></i> React.js</span>
+                </div>
+
+                <div class="contact-links" style="margin-top: 14px; gap: 15px;">
+                    <a href="https://github.com/RossiThomas2406/tp-final-frozen-full" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
+                        <i class="devicon-github-original"></i> <span class="es">Código</span><span class="en">Code</span>
+                    </a>
+                    <a href="#" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="es">Ver Demo</span><span class="en">Live Demo</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title es">Sistema de Ventas B2B y Catálogo</span>
+                    <span class="project-title en">B2B Sales & Catalog System</span>
+                    <span class="project-client">DistriSur</span>
+                </div>
+                <p class="es">Actualicé un sistema crítico de catálogo y ventas B2B para optimizar la herramienta diaria de los representantes de ventas. Implementé Angular.js para el desarrollo de una SPA dinámica, construyendo filtros avanzados y visualización instantánea de productos.</p>
+                <p class="en">Upgraded a critical B2B catalog and sales system used daily by sales representatives. Implemented Angular.js to develop a dynamic single-page application (SPA), designing advanced search filters and instant product views.</p>
+                
+                <div class="project-techs">
+                    <span class="project-tech-tag"><i class="devicon-angularjs-plain"></i> Angular.js</span>
+                    <span class="project-tech-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
+                </div>
+
+                <div class="contact-links" style="margin-top: 14px; gap: 15px;">
+                    <a href="#" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="es">Ver Demo</span><span class="en">Live Demo</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title es">Sistema de Gestión de Cursos y Asistencia</span>
+                    <span class="project-title en">Attendance & Course Management System</span>
+                    <span class="project-client">CUI</span>
+                </div>
+                <p class="es">Desarrollé un módulo de seguimiento de asistencia que permite al personal administrativo monitorear registros de estudiantes y profesores de manera eficiente. Diseñé interfaces basadas en datos con indicadores visuales de estado operativo.</p>
+                <p class="en">Developed an attendance tracking module enabling administrative staff to monitor student and professor logs efficiently. Designed data-driven UI components with visual status indicators for operational workflows.</p>
+                
+                <div class="project-techs">
+                    <span class="project-tech-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
+                    <span class="project-tech-tag"><i class="devicon-html5-plain"></i> HTML5 / CSS3</span>
+                </div>
+
+                <div class="contact-links" style="margin-top: 14px; gap: 15px;">
+                    <a href="#" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="es">Ver Demo</span><span class="en">Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="es">Contacto</h2>
+            <h2 class="en">Contact</h2>
+            
+            <div class="contact-links">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rossithomasdev@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i> Email</a>
+                <a href="https://github.com/RossiThomas2406" target="_blank"><i class="devicon-github-original"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/thomas-hernan-rossi/" target="_blank"><i class="devicon-linkedin-plain"></i> LinkedIn</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const htmlElement = document.documentElement;
+
+        // Interruptor de Idioma
+        const langToggle = document.getElementById('lang-toggle');
+        langToggle.addEventListener('click', () => {
+            const currentLang = htmlElement.getAttribute('lang');
+            const newLang = currentLang === 'es' ? 'en' : 'es';
+            htmlElement.setAttribute('lang', newLang);
+        });
+
+        // Interruptor de Tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+        });
+    </script>
+</body>
+</html>
