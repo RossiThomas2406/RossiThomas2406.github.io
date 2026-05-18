@@ -12,23 +12,25 @@
     <style>
         /* Paleta Minimalista y Neutra */
         [data-theme="light"] {
-            --bg-color: #fafafa;
-            --container-bg: #ffffff;
-            --text-color: #171717;
-            --text-muted: #666666;
-            --accent-color: #2563eb; /* Azul corporativo sobrio */
-            --border-color: #e5e5e5;
-            --tag-bg: #f5f5f5;
+            --bg-color: #f4f4f5; /* Blanco opaco/hueso para no lastimar los ojos */
+            --container-bg: #fafafa; 
+            --text-color: #18181b;
+            --text-muted: #52525b;
+            --accent-color: #2563eb; 
+            --border-color: #e4e4e7;
+            --tag-bg: #e4e4e7;
+            --main-tech-border: #27272a; /* Borde oscuro sobrio para el stack principal en tema claro */
         }
 
         [data-theme="dark"] {
-            --bg-color: #0b0f19; /* Grafito oscuro profundo */
-            --container-bg: #111827; /* Gris oscuro neutro */
+            --bg-color: #0b0f19; 
+            --container-bg: #111827; 
             --text-color: #f3f4f6;
             --text-muted: #9ca3af;
-            --accent-color: #60a5fa; /* Azul pastel suave */
+            --accent-color: #60a5fa; 
             --border-color: #1f2937;
             --tag-bg: #1f2937;
+            --main-tech-border: #60a5fa; /* Mantiene el azul pastel en el tema oscuro */
         }
 
         /* Estilos Base Estilo Minimalista */
@@ -48,23 +50,28 @@
         }
 
         .container {
-            max-width: 700px; /* Un poco más angosto para mejorar la lectura */
+            max-width: 700px; 
             margin: 0 auto;
+            position: relative;
         }
 
-        /* Controles superiores flotantes y limpios */
+        /* Controles superiores flotantes fijos en pantalla */
         .controls {
             display: flex;
             justify-content: flex-end;
             gap: 12px;
-            margin-bottom: 40px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: transparent;
         }
 
         button {
-            background-color: transparent;
+            background-color: var(--container-bg);
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 6px 14px;
+            padding: 8px 14px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 500;
@@ -72,6 +79,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         button:hover {
@@ -79,7 +87,6 @@
             border-color: var(--text-muted);
         }
 
-        /* Secciones sin fondo pesado, separadas por líneas sutiles */
         section {
             padding: 24px 0;
             margin-bottom: 20px;
@@ -90,10 +97,9 @@
             border-bottom: none;
         }
 
-        /* Hero sección */
         .hero {
-            text-align: left; /* Alineación a la izquierda para un look más moderno */
-            padding-top: 0;
+            text-align: left; 
+            padding-top: 20px; /* Margen para no chocar con los botones fijos en mobile */
         }
         .hero h1 {
             font-size: 2.2rem;
@@ -152,13 +158,13 @@
             gap: 8px;
             border: 1px solid transparent;
         }
-        /* Destacado sutil para tu stack principal */
+        /* Color de borde dinámico según el tema configurado */
         .main-tech {
-            border-color: var(--accent-color);
+            border-color: var(--main-tech-border);
             background-color: transparent;
         }
 
-        /* Tarjetas de Proyectos Minimalistas */
+        /* Tarjetas de Proyectos y Educación */
         .project-card {
             margin-bottom: 30px;
         }
@@ -168,7 +174,7 @@
         .project-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
             margin-bottom: 8px;
         }
@@ -185,6 +191,11 @@
             color: var(--text-muted);
             font-weight: 500;
         }
+        .project-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
         .project-techs {
             display: flex;
             flex-wrap: wrap;
@@ -198,6 +209,15 @@
             align-items: center;
             gap: 4px;
             margin-right: 10px;
+        }
+        .project-card ul {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .project-card li {
+            margin-bottom: 4px;
         }
 
         /* Contacto */
@@ -228,15 +248,29 @@
         html[lang="en"] .es {
             display: none !important;
         }
+
+        /* Ajuste responsivo para los botones fijos en pantallas chicas */
+        @media (max-width: 768px) {
+            .controls {
+                top: 10px;
+                right: 10px;
+                gap: 6px;
+            }
+            button {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <div class="controls">
+        <button id="lang-toggle"><i class="fa-solid fa-language"></i> EN / ES</button>
+        <button id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i> Theme</button>
+    </div>
+
     <div class="container">
-        <div class="controls">
-            <button id="lang-toggle"><i class="fa-solid fa-language"></i> EN / ES</button>
-            <button id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i> Theme</button>
-        </div>
 
         <section class="hero">
             <h1>THOMAS HERNÁN ROSSI</h1>
@@ -246,108 +280,183 @@
         </section>
 
         <section id="about">
-            <h2 class="es">Sobre Mí</h2>
-            <h2 class="en">About Me</h2>
+            <h2 class="es">Perfil Profesional</h2>
+            <h2 class="en">Professional Summary</h2>
             
             <p class="es">Desarrollador de Software especializado en el ecosistema Java. Mi stack principal se centra en Java, Spring Boot y PostgreSQL, con un fuerte enfoque en el desarrollo de soluciones backend escalables, diseño de bases de datos relacionales y optimización de consultas.</p>
             <p class="en">Software Developer specializing in the Java ecosystem. My core stack is built around Java, Spring Boot, and PostgreSQL, with a strong focus on developing scalable backend solutions, designing relational databases, and writing efficient queries.</p>
             
-            <p class="es">Adicionalmente, complemento mi perfil con herramientas como Express.js, Node.js y experiencia frontend utilizando React.js y Angular.js. Cuento con un nivel de inglés fluido (B2), preparado para colaborar con equipos multiculturales.</p>
-            <p class="en">Additionally, I complement my profile with tools like Express.js, Node.js, and frontend experience using React.js and Angular.js. Fluent in English (B2 level), ready to collaborate with cross-functional and multicultural teams.</p>
+            <p class="es">Adicionalmente, complemento mi perfil con un conjunto de herramientas técnicas versátiles que incluyen desarrollo backend con Express.js y experiencia frontend utilizando React.js, JavaScript, HTML5 y CSS3.</p>
+            <p class="en">Additionally, I complement my profile with a versatile technical toolkit that includes backend development with Express.js, and frontend experience using React.js, JavaScript, HTML5, and CSS3.</p>
+
+            <p class="es">Cuento con un nivel de inglés fluido (nivel B2), preparado para colaborar con equipos multidisciplinarios y multiculturales con el fin de entregar software de alta calidad.</p>
+            <p class="en">Fluent in English (B2 level), ready to collaborate with cross-functional and multicultural teams to deliver high-quality software.</p>
         </section>
 
         <section id="technologies">
-            <h2 class="es">Tecnologías</h2>
-            <h2 class="en">Technologies</h2>
+            <h2 class="es">Habilidades Técnicas</h2>
+            <h2 class="en">Technical Skills</h2>
             
             <div class="skills-grid">
                 <span class="skill-tag main-tech"><i class="devicon-java-plain"></i> Java</span>
                 <span class="skill-tag main-tech"><i class="devicon-spring-plain"></i> Spring Boot</span>
-                <span class="skill-tag main-tech"><i class="devicon-spring-plain"></i> Spring Data</span>
                 <span class="skill-tag main-tech"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
                 
                 <span class="skill-tag"><i class="devicon-express-original"></i> Express.js</span>
                 <span class="skill-tag"><i class="devicon-nodejs-plain"></i> Node.js</span>
-                <span class="skill-tag"><i class="fa-solid fa-cloud"></i> REST APIs</span>
-                <span class="skill-tag"><i class="fa-solid fa-box-open"></i> Maven</span>
-                <span class="skill-tag"><i class="devicon-python-plain"></i> Python</span>
+                
                 <span class="skill-tag"><i class="devicon-react-original"></i> React.js</span>
-                <span class="skill-tag"><i class="devicon-angularjs-plain"></i> Angular.js</span>
                 <span class="skill-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
-                <span class="skill-tag"><i class="devicon-html5-plain"></i> HTML5 / CSS3</span>
+                <span class="skill-tag"><i class="devicon-html5-plain"></i> HTML5</span>
+                <span class="skill-tag"><i class="devicon-css3-plain"></i> CSS3</span>
+                
                 <span class="skill-tag"><i class="devicon-git-plain"></i> Git</span>
-                <span class="skill-tag"><i class="devicon-jira-plain"></i> Scrum</span>
+                <span class="skill-tag"><i class="devicon-github-original"></i> GitHub</span>
+                <span class="skill-tag"><i class="fa-solid fa-users"></i> SCRUM</span>
+                <span class="skill-tag"><i class="devicon-jira-plain"></i> JIRA</span>
             </div>
         </section>
 
-<section id="projects">
-            <h2 class="es">Proyectos</h2>
-            <h2 class="en">Projects</h2>
+        <section id="projects">
+            <h2 class="es">Experiencia y Proyectos</h2>
+            <h2 class="en">Experience & Projects</h2>
 
             <div class="project-card">
                 <div class="project-header">
-                    <span class="project-title es">Sistema de Gestión de Producción Alimentaria</span>
-                    <span class="project-title en">Food Production Management System</span>
+                    <div>
+                        <span class="project-title es">Proyecto Full-Stack | Sistema de Gestión de Producción Alimentaria</span>
+                        <span class="project-title en">Full-Stack Software Project | Food Production Management System</span>
+                    </div>
                     <span class="project-client">UNGS</span>
                 </div>
-                <p class="es">Colaboré en un equipo ágil para diseñar y entregar un sistema full-stack que migró el flujo de trabajo de producción de una PyME de alimentos congelados hacia una solución automatizada. Desarrollé servicios backend escalables en Python, base de datos relacional en PostgreSQL y paneles en React.js.</p>
-                <p class="en">Collaborated in an Agile team to design and deliver a full-stack system that migrated a frozen food SME's production workflow to an automated software solution. Developed scalable backend services using Python, relational schema in PostgreSQL, and React.js dashboards.</p>
+                
+                <ul class="es">
+                    <li>Colaboré en un equipo ágil (SCRUM/JIRA) para diseñar y entregar un sistema full-stack que migró el flujo de trabajo de producción de una PyME de alimentos congelados desde planillas de Excel heredadas hacia una solución de software automatizada.</li>
+                    <li>Desarrollé servicios backend escalables utilizando Python y diseñé el modelo de base de datos relacional en PostgreSQL para gestionar pedidos de materia prima, recetas y líneas de producción.</li>
+                    <li>Implementé un sistema robusto de Control de Acceso Basado en Roles (RBAC), gestionando permisos de usuario en el backend para asegurar endpoints y adaptando dinámicamente la interfaz en React.js según el rol corporativo del empleado.</li>
+                    <li>Construí módulos frontend dinámicos, integrando características complejas como un tablero de analíticas (Dashboard) para KPIs de la empresa y un sistema de reconocimiento facial para una autenticación segura de usuarios.</li>
+                    <li>Gestioné el despliegue del software en Vercel y presenté con éxito los entregables bajo una simulación estricta de cliente-proveedor con profesores universitarios actuando como partes interesadas (stakeholders).</li>
+                </ul>
+
+                <ul class="en">
+                    <li>Collaborated in an Agile team (SCRUM/JIRA) to design and deliver a full-stack system that migrated a frozen food SME's production workflow from legacy Excel sheets to an automated software solution.</li>
+                    <li>Developed scalable backend services using Python and designed the relational database schema in PostgreSQL to manage raw material orders, recipes, and production lines.</li>
+                    <li>Implemented a robust Role-Based Access Control (RBAC) system, managing user permissions on the backend to secure endpoints and dynamically adapting the React.js UI based on the employee's corporate role.</li>
+                    <li>Built dynamic frontend modules, integrating complex features such as an analytics dashboard for company KPIs and a facial recognition system for secure user authentication.</li>
+                    <li>Managed software deployment on Vercel and successfully presented deliverables under a strict client-vendor simulation with university professors acting as stakeholders.</li>
+                </ul>
                 
                 <div class="project-techs">
                     <span class="project-tech-tag"><i class="devicon-python-plain"></i> Python</span>
                     <span class="project-tech-tag"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
                     <span class="project-tech-tag"><i class="devicon-react-original"></i> React.js</span>
+                    <span class="project-tech-tag"><i class="fa-solid fa-cloud-arrow-up"></i> Vercel</span>
                 </div>
 
                 <div class="contact-links" style="margin-top: 14px; gap: 15px;">
                     <a href="https://github.com/RossiThomas2406/tp-final-frozen-full" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
                         <i class="devicon-github-original"></i> <span class="es">Código</span><span class="en">Code</span>
                     </a>
-                    <a href="#" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="es">Ver Demo</span><span class="en">Live Demo</span>
-                    </a>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-header">
-                    <span class="project-title es">Sistema de Ventas B2B y Catálogo</span>
-                    <span class="project-title en">B2B Sales & Catalog System</span>
-                    <span class="project-client">DistriSur</span>
+                    <div>
+                        <span class="project-title es">Desarrollador de Software | Sistema de Ventas B2B y Catálogo</span>
+                        <span class="project-title en">Software Developer | B2B Sales & Catalog System</span>
+                    </div>
+                    <span class="project-client">DistriSur / SysData</span>
                 </div>
-                <p class="es">Actualicé un sistema crítico de catálogo y ventas B2B para optimizar la herramienta diaria de los representantes de ventas. Implementé Angular.js para el desarrollo de una SPA dinámica, construyendo filtros avanzados y visualización instantánea de productos.</p>
-                <p class="en">Upgraded a critical B2B catalog and sales system used daily by sales representatives. Implemented Angular.js to develop a dynamic single-page application (SPA), designing advanced search filters and instant product views.</p>
+                
+                <ul class="es">
+                    <li>Actualicé un sistema crítico de catálogo y ventas B2B para el cliente DistriSur, mejorando la herramienta principal utilizada diariamente por los representantes de ventas para procesar pedidos de clientes.</li>
+                    <li>Me adapté rápidamente e implementé Angular.js para desarrollar una aplicación de página única (SPA) dinámica y altamente responsiva basada en los requerimientos del cliente.</li>
+                    <li>Diseñé e implementé filtros de búsqueda avanzados y componentes dinámicos de visualización de productos que renderizaban detalles de manera instantánea según la selección del usuario, mejorando la experiencia de usuario (UX).</li>
+                </ul>
+
+                <ul class="en">
+                    <li>Upgraded a critical B2B catalog and sales system for the client DistriSur, improving the core tool used daily by sales representatives to process customer orders.</li>
+                    <li>Rapidly adapted to and implemented Angular.js to develop a dynamic, highly responsive single-page application (SPA) based on the client's requirements.</li>
+                    <li>Designed and implemented advanced search filters and dynamic product view components that rendered details instantly based on user selection, enhancing user experience (UX).</li>
+                </ul>
                 
                 <div class="project-techs">
                     <span class="project-tech-tag"><i class="devicon-angularjs-plain"></i> Angular.js</span>
                     <span class="project-tech-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
                 </div>
-
-                <div class="contact-links" style="margin-top: 14px; gap: 15px;">
-                    <a href="#" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="es">Ver Demo</span><span class="en">Live Demo</span>
-                    </a>
-                </div>
             </div>
 
             <div class="project-card">
                 <div class="project-header">
-                    <span class="project-title es">Sistema de Gestión de Cursos y Asistencia</span>
-                    <span class="project-title en">Attendance & Course Management System</span>
-                    <span class="project-client">CUI</span>
+                    <div>
+                        <span class="project-title es">Desarrollador de Software | Sistema de Gestión de Cursos y Asistencia</span>
+                        <span class="project-title en">Software Developer | Attendance & Course Management System</span>
+                    </div>
+                    <span class="project-client">CUI / SysData</span>
                 </div>
-                <p class="es">Desarrollé un módulo de seguimiento de asistencia que permite al personal administrativo monitorear registros de estudiantes y profesores de manera eficiente. Diseñé interfaces basadas en datos con indicadores visuales de estado operativo.</p>
-                <p class="en">Developed an attendance tracking module enabling administrative staff to monitor student and professor logs efficiently. Designed data-driven UI components with visual status indicators for operational workflows.</p>
+                
+                <ul class="es">
+                    <li>Desarrollé un módulo de seguimiento de asistencia para el Centro Universitario de Idiomas (CUI), permitiendo al personal administrativo monitorear los registros de estudiantes y profesores de manera eficiente.</li>
+                    <li>Diseñé componentes de interfaz de usuario basados en datos con indicadores visuales de estado, lo que permite a los usuarios realizar un seguimiento del progreso del curso y los estados activos de un vistazo.</li>
+                    <li>Traduje las reglas e instituciones académicas en una lógica de software clara, garantizando la precisión en el ingreso de datos para los flujos de trabajo operativos diarios.</li>
+                </ul>
+
+                <ul class="en">
+                    <li>Developed an attendance tracking module for the University Language Center (CUI), enabling administrative staff to monitor student and professor logs efficiently.</li>
+                    <li>Designed data-driven user interface components with visual status indicators, allowing users to track course progress and active states at a glance.</li>
+                    <li>Translated institutional rules and requirements into clear software logic, ensuring accurate data entry for daily operational workflows.</li>
+                </ul>
                 
                 <div class="project-techs">
                     <span class="project-tech-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
                     <span class="project-tech-tag"><i class="devicon-html5-plain"></i> HTML5 / CSS3</span>
                 </div>
+            </div>
+        </section>
 
-                <div class="contact-links" style="margin-top: 14px; gap: 15px;">
-                    <a href="#" target="_blank" style="font-size: 0.85rem; font-weight: 500;">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="es">Ver Demo</span><span class="en">Live Demo</span>
-                    </a>
+        <section id="education">
+            <h2 class="es">Educación</h2>
+            <h2 class="en">Education</h2>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title es">Licenciatura en Sistemas (4° Año)</span>
+                    <span class="project-title en">Bachelor's Degree in Information Systems (4th Year)</span>
+                    
+                    <span class="project-date es">2021 - Presente</span>
+                    <span class="project-date en">2021 - Present</span>
+                </div>
+                <p style="margin-bottom: 0;">Universidad Nacional de General Sarmiento (UNGS)</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title es">Tecnicatura Universitaria en Informática</span>
+                    <span class="project-title en">Associate Degree in Computer Science</span>
+                    <span class="project-date">2021 - 2025</span>
+                </div>
+                <p style="margin-bottom: 0;">Universidad Nacional de General Sarmiento (UNGS)</p>
+            </div>
+        </section>
+
+        <section id="licenses">
+            <h2 class="es">Licencias y Certificaciones</h2>
+            <h2 class="en">Licenses & Certifications</h2>
+
+            <div class="project-card" style="margin-bottom: 12px;">
+                <div class="project-header">
+                    <span class="project-title es">Profesional Matriculado | CPCIBA</span>
+                    <span class="project-title en">Registered Professional | CPCIBA</span>
+                </div>
+                <p class="es" style="margin-bottom: 0;">Consejo Profesional de Ciencias Informáticas de la Provincia de Buenos Aires | <strong>Matrícula: 2765</strong></p>
+                <p class="en" style="margin-bottom: 0;">Computer Science Professional Council | <strong>License: 2765</strong></p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title es">Dominio de Inglés B2</span>
+                    <span class="project-title en">English B2 Proficiency</span>
                 </div>
             </div>
         </section>
