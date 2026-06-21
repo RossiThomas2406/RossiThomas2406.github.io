@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <meta charset="UTF-8">
@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
     <style>
-        /* Paleta Minimalista y Neutra Corregida */
+        
         [data-theme="light"] {
-            --bg-color: #f4f4f6; /* Blanco roto / Gris hueso muy suave que elimina el brillo molesto */
-            --container-bg: #ffffff; /* Blanco puro para las tarjetas, logrando una separación limpia */
-            --text-color: #1e293b; /* Gris grafito oscuro para títulos principales (Legibilidad perfecta) */
-            --text-muted: #475569; /* Gris pizarra medio para descripciones y viñetas */
-            --accent-color: #2563eb; /* Azul corporativo para los enlaces */
-            --border-color: #e2e8f0; /* Bordes sutiles y limpios */
-            --tag-bg: #f1f5f9; /* Fondo de etiquetas suave */
+            --bg-color: #f4f4f6;
+            --container-bg: #ffffff; 
+            --text-color: #1e293b; 
+            --text-muted: #475569; 
+            --accent-color: #2563eb; 
+            --border-color: #e2e8f0; 
+            --tag-bg: #f1f5f9; 
             --main-tech-border: #0f172a; 
         }
 
@@ -33,7 +33,6 @@
             --main-tech-border: #60a5fa; 
         }
 
-        /* Estilos Base Estilo Minimalista */
         * {
             margin: 0;
             padding: 0;
@@ -55,7 +54,6 @@
             position: relative;
         }
 
-        /* Controles superiores flotantes fijos en pantalla */
         .controls {
             display: flex;
             justify-content: flex-end;
@@ -144,7 +142,6 @@
             margin-bottom: 16px;
         }
 
-        /* Tecnologías */
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
@@ -168,7 +165,6 @@
             background-color: transparent;
         }
 
-        /* Tarjetas de Proyectos y Educación */
         .project-card {
             margin-bottom: 30px;
         }
@@ -225,7 +221,6 @@
             margin-bottom: 4px;
         }
 
-        /* Enlaces de Proyectos (Video Demo) */
         .project-links {
             display: flex;
             gap: 12px;
@@ -244,7 +239,6 @@
             text-decoration: underline;
         }
 
-        /* Contacto */
         .contact-links {
             display: flex;
             justify-content: flex-start;
@@ -265,15 +259,13 @@
             color: var(--accent-color);
         }
 
-        /* Control de Idioma por CSS */
-        html[lang="es"] .en {
-            display: none !important;
-        }
         html[lang="en"] .es {
             display: none !important;
         }
+        html[lang="es"] .en {
+            display: none !important;
+        }
 
-        /* Ajuste responsivo para los botones fijos en pantallas chicas */
         @media (max-width: 768px) {
             .controls {
                 top: 10px;
@@ -345,7 +337,6 @@
             <h2 class="es">Experiencia y Proyectos</h2>
             <h2 class="en">Experience & Projects</h2>
 
-            <!-- Proyecto 1: Yamanil S.A. -->
             <div class="project-card">
                 <div class="project-header">
                     <div>
@@ -384,7 +375,6 @@
                 </div>
             </div>
 
-            <!-- Proyecto 2: UNGS -->
             <div class="project-card">
                 <div class="project-header">
                     <div>
@@ -423,7 +413,6 @@
                 </div>
             </div>
 
-            <!-- Proyecto 3: DistriSur -->
             <div class="project-card">
                 <div class="project-header">
                     <div>
@@ -511,7 +500,6 @@
     <script>
         const htmlElement = document.documentElement;
 
-        // Interruptor de Idioma
         const langToggle = document.getElementById('lang-toggle');
         langToggle.addEventListener('click', () => {
             const currentLang = htmlElement.getAttribute('lang');
@@ -519,7 +507,6 @@
             htmlElement.setAttribute('lang', newLang);
         });
 
-        // Interruptor de Tema
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('click', () => {
             const currentTheme = htmlElement.getAttribute('data-theme');
